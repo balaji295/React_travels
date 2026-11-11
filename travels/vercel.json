@@ -1,0 +1,8 @@
+{
+    "rewritters": [
+        {
+            "source": "/api/(.*)",
+            "destination": "https://travel-go-oqxk.onrender.com/api/$1"
+        }
+    ]
+}
