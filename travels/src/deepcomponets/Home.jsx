@@ -9,11 +9,11 @@ const Home = ({ token }) => {
   const [buses, setBuses] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // పేజీ లోడ్ అవ్వగానే API నుండి బస్సులను తెచ్చుకోవడం
+  
   useEffect(() => {
     const fetchBuses = async () => {
       try {
-        // మీ లైవ్ బ్యాకెండ్ లింక్ ఇక్కడ ఇవ్వండి (లోకల్ అయితే http://127.0.0.1:8000 అని ఇవ్వండి)
+      
         const response = await axios.get("https://travel-go-oqxk.onrender.com/api/buses/");
         setBuses(response.data);
         setLoading(false);
@@ -25,7 +25,7 @@ const Home = ({ token }) => {
     fetchBuses();
   }, []);
 
-  // సెర్చ్ చేసినప్పుడు ఏం చేయాలి
+  
   const handleSearch = (searchData) => {
     if (!searchData.fromCity || !searchData.toCity) {
       alert("Please enter Your source and destination to search for buses");
@@ -36,7 +36,7 @@ const Home = ({ token }) => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* సెర్చ్ ఫారమ్ భాగం */}
+      
       <div className="bg-white shadow-md py-10 mb-8">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h1 className="text-3xl font-bold text-gray-800 mb-6">Book Your Bus Tickets</h1>
@@ -44,7 +44,7 @@ const Home = ({ token }) => {
         </div>
       </div>
 
-      {/* హోమ్ పేజీలో బస్సుల లిస్ట్ చూపించే భాగం */}
+      
       <div className="max-w-6xl mx-auto p-6">
         <h2 className="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">Available Buses</h2>
         
