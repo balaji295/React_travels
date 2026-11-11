@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate ,useLocation} from 'react-router-dom';
+
 
 const BusList = () => {
     const [buses, setBuses] = useState([]);
     const navigate = useNavigate(); // Fixed typo
+    const location = useLocation();
+    const searchData = location.state ;
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -12,7 +15,7 @@ const BusList = () => {
         const fetchBuses = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get("http://127.0.0.1:8000/api/buses/");
+                const response = await axios.get("https://travel-go-oqxk.onrender.com/api/buses/");
                 setBuses(response.data);
             } catch (error) {
                 console.log("Error in fetching buses", error);
@@ -31,6 +34,7 @@ const BusList = () => {
     if (loading) {
         return <div className="flex justify-center items-center h-screen text-xl text-gray-600">Loading buses...</div>;
     }
+    const displayBuses = searchData ? buses.filter(bus => bus.origin === searchData.fromCity && bus.destination === searchData.toCity) : buses;
 
     if (error) {
         return <div className="flex justify-center items-center h-screen text-xl text-red-500">Error: {error}</div>;
@@ -41,7 +45,7 @@ const BusList = () => {
             <h2 className="text-3xl font-bold text-gray-800 mb-8 border-b pb-4">Available Buses</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {buses.map((item) => (
+                {displayBuses.map((item) => (
                     <div
                         key={item.id}
                         className="bg-white rounded-xl shadow-md border border-gray-100 p-6 hover:shadow-lg transition-shadow duration-300"

@@ -69,10 +69,10 @@ const handleSeatSelect = (seat) => {
                 return;
             }
             const seatIds=selectedSeats.map(seat=>seat.seat_number);
-            await axios.get(` http://127.0.0.1:8000/api/get-csrf-token/`,{withCredentials:true});
+            await axios.get(` https://travel-go-oqxk.onrender.com/api/get-csrf-token/`,{withCredentials:true});
             const csrftoken = document.cookie.split('; ').find(row => row.startsWith('csrftoken='))?.split('=')[1];
             const response=await axios.post(
-               ` http://127.0.0.1:8000/api/booking/`,
+               ` https://travel-go-oqxk.onrender.com/api/booking/`,
                 { seats: seatIds,
                 bus_id:busId},
                 {

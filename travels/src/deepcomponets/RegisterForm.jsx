@@ -15,11 +15,11 @@ const RegisterForm = () => {
         e.preventDefault();
         try {
             console.log('sending data:',form);
-            await axios.post('http://127.0.0.1:8000/api/register/', form);
+            await axios.post('https://travel-go-oqxk.onrender.com/api/register/', form);
             setMessage('Registration successful');
             navigate('/login',{state:{message:'Registration suceesful!'}});
         } catch (err) {
-            console.log('status:',error.response?.status);
+            console.log('status:',err.response?.status);
             console.log('Backend Error:',err.response?.data);
             console.log('Full error:',err);
             setMessage("Registration Failed: " + JSON.stringify(error.response?.data || error.message));

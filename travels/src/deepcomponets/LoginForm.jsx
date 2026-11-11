@@ -16,7 +16,7 @@ const LoginForm = ({ onLogin }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/login/', form);
+            const response = await axios.post('https://travel-go-oqxk.onrender.com/api/login/', form);
             setMessage('Login successful!');
             if (onLogin) {
                 onLogin(response.data.token, response.data.user_id);
